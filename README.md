@@ -62,7 +62,7 @@ Cord lives in the menu bar. Everything it can do is on one panel.
 | | |
 | --- | --- |
 | **Cord for Mac** | Free, and stays free. |
-| **Cord for Android** | Free for the first 7 days with everything working. After that, one ฿99 payment on Google Play keeps it for good. No subscription. |
+| **Cord for Android** | Free for the first 7 days with everything working. After that, one US$2.99 payment on Google Play keeps it for good (฿99 in Thailand; Google Play shows the price in your currency). No subscription. |
 
 ## Permissions & privacy
 
