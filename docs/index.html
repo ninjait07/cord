@@ -1,0 +1,311 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Cord — More screen for your Mac</title>
+<meta name="description" content="Turn the Android tablet you already own into an extra display for your Mac, over a USB-C cable. Touch works like a tablet. No Wi-Fi, no account.">
+<meta name="author" content="NonDev">
+<link rel="me" href="https://www.facebook.com/nondev07/">
+<link rel="icon" href="icon.png">
+<meta property="og:title" content="Cord — More screen for your Mac">
+<meta property="og:description" content="Your Android tablet becomes an extra display for your Mac, over one USB-C cable.">
+<meta property="og:image" content="https://ninjait07.github.io/cord/img/og.png">
+<meta property="og:url" content="https://ninjait07.github.io/cord/">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Sora:wght@400;600;700;800&family=Inter:wght@400;500;600&family=IBM+Plex+Sans+Thai:wght@400;500;600;700&display=swap">
+<style>
+  :root{
+    --bg:#0c0d10; --bg-2:#131519; --panel:#181b21; --line:#262a32;
+    --ink:#f2f4f7; --muted:#9aa3b0; --accent:#4a9dff; --accent-2:#6fd93b;
+    --radius:16px; --maxw:1000px;
+    --shadow:0 1px 2px rgba(0,0,0,.4),0 18px 50px rgba(0,0,0,.5);
+  }
+  *{box-sizing:border-box}
+  html{scroll-behavior:smooth}
+  body{margin:0;background:var(--bg);color:var(--ink);
+    font-family:"Inter","IBM Plex Sans Thai",system-ui,-apple-system,sans-serif;line-height:1.6;
+    background-image:radial-gradient(1200px 500px at 70% -10%, rgba(74,157,255,.10), transparent 60%),
+                     radial-gradient(900px 500px at 10% 0%, rgba(111,217,59,.06), transparent 55%);}
+  .wrap{max-width:var(--maxw);margin:0 auto;padding:0 22px}
+  h1,h2,h3{font-family:"Sora","IBM Plex Sans Thai",system-ui,sans-serif;letter-spacing:-.02em;line-height:1.1;text-wrap:balance;margin:0}
+  :lang(th) h1,:lang(th) h2,:lang(th) h3{letter-spacing:0;line-height:1.3}
+  a{color:var(--accent);text-decoration:none}
+  a:hover{text-decoration:underline}
+
+  header{padding:20px 0;display:flex;align-items:center;justify-content:space-between;gap:12px;flex-wrap:wrap}
+  .brand{display:flex;align-items:center;gap:12px;font-family:"Sora";font-weight:700;font-size:19px}
+  .brand img{width:34px;height:34px;border-radius:9px}
+  nav{display:flex;align-items:center;flex-wrap:wrap;gap:6px 20px}
+  nav a{color:var(--muted);font-size:14px}
+  nav a:hover{color:var(--ink);text-decoration:none}
+  nav a.lang{color:var(--ink);border:1px solid var(--line);border-radius:8px;padding:3px 10px;background:var(--panel)}
+
+  .hero{text-align:center;padding:56px 0 8px}
+  .hero img.logo{width:104px;height:104px;border-radius:24px;box-shadow:var(--shadow);margin-bottom:26px}
+  .hero h1{font-size:clamp(34px,6vw,60px);font-weight:800}
+  .hero .tag{color:var(--muted);font-size:clamp(16px,2.4vw,20px);max-width:640px;margin:18px auto 0}
+  .cta{display:flex;gap:14px;justify-content:center;flex-wrap:wrap;margin-top:32px}
+  .btn{display:inline-flex;align-items:center;gap:9px;padding:13px 22px;border-radius:12px;font-weight:600;
+    font-size:15px;border:1px solid var(--line);color:var(--ink);background:var(--panel)}
+  .btn.primary{background:linear-gradient(180deg,#5aa6ff,#2f7de0);border-color:#2f7de0;color:#04122b;box-shadow:var(--shadow)}
+  .btn:hover{filter:brightness(1.05);text-decoration:none}
+  .btn.soon{color:var(--muted);cursor:default}
+  .btn.soon:hover{filter:none}
+  .meta{color:var(--muted);font-size:13px;margin-top:14px}
+
+  .scene{margin:34px auto 0;max-width:860px}
+  .scene img{display:block;width:100%;height:auto}
+
+  section{padding:44px 0}
+  .eyebrow{color:var(--accent-2);font-weight:600;font-size:13px;letter-spacing:.1em;text-transform:uppercase}
+  :lang(th) .eyebrow{letter-spacing:.02em}
+  h2{font-size:clamp(24px,4vw,34px);font-weight:700;margin:8px 0 26px}
+  .lead{color:var(--muted);margin:-12px 0 24px;max-width:640px}
+
+  .grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:16px}
+  .grid.four{grid-template-columns:repeat(auto-fit,minmax(215px,1fr))}
+  .card{background:var(--panel);border:1px solid var(--line);border-radius:var(--radius);padding:20px}
+  .card h3{font-size:17px;font-weight:600;margin-bottom:6px}
+  .card p{color:var(--muted);font-size:14px;margin:0}
+  .card .ic{width:34px;height:34px;border-radius:9px;display:grid;place-items:center;margin-bottom:12px;
+    background:rgba(74,157,255,.12);color:var(--accent)}
+  .card .ic svg{width:19px;height:19px;fill:none;stroke:currentColor;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round}
+
+  .split{display:grid;grid-template-columns:1.1fr 1fr;gap:28px;align-items:center}
+  .split.top{align-items:start}
+  @media(max-width:760px){.split{grid-template-columns:1fr}}
+  .box{background:var(--bg-2);border:1px solid var(--line);border-radius:var(--radius);padding:24px}
+  .box ul{margin:0;padding-left:18px;color:var(--muted);font-size:14px}
+  .box li{margin:6px 0}
+  .box b{color:var(--ink)}
+  .box h3{font-size:16px;font-weight:600;margin-bottom:12px}
+
+  .shot{margin:0;text-align:center}
+  .shot img{width:100%;max-width:364px;height:auto;display:block;margin:0 auto;filter:drop-shadow(0 18px 40px rgba(0,0,0,.55))}
+  table.gestures{width:100%;border-collapse:collapse;font-size:14px}
+  table.gestures td{padding:10px 0;border-top:1px solid var(--line);color:var(--muted);vertical-align:top}
+  table.gestures tr:first-child td{border-top:0}
+  table.gestures td:first-child{color:var(--ink);font-weight:600;white-space:nowrap;padding-right:18px}
+
+  ol.steps{counter-reset:s;list-style:none;padding:0;margin:0;display:grid;gap:12px}
+  ol.steps li{background:var(--panel);border:1px solid var(--line);border-radius:12px;padding:14px 16px 14px 52px;
+    position:relative;color:var(--muted);font-size:14px}
+  ol.steps li::before{counter-increment:s;content:counter(s);position:absolute;left:14px;top:12px;
+    width:26px;height:26px;border-radius:8px;background:var(--accent);color:#04122b;font-weight:700;
+    display:grid;place-items:center;font-size:13px}
+  ol.steps b{color:var(--ink)}
+
+  .prices{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:16px}
+  .price{background:var(--panel);border:1px solid var(--line);border-radius:var(--radius);padding:24px}
+  .price .what{color:var(--muted);font-size:14px}
+  .price .amount{font-family:"Sora";font-weight:800;font-size:34px;letter-spacing:-.02em;margin:6px 0 10px}
+  .price .amount small{font-size:15px;font-weight:600;color:var(--muted);letter-spacing:0;margin-left:6px}
+  .price p{color:var(--muted);font-size:14px;margin:0}
+
+  .support{text-align:center;background:var(--panel);border:1px solid var(--line);border-radius:var(--radius);padding:34px}
+  footer{border-top:1px solid var(--line);padding:26px 0 50px;color:var(--muted);font-size:13px;
+    display:flex;justify-content:space-between;flex-wrap:wrap;gap:10px}
+  .flag{display:inline-block;width:15px;height:10px;border-radius:2px;vertical-align:middle;overflow:hidden;
+    background:linear-gradient(#a51931 0 17%,#fff 17% 33%,#2d2a4a 33% 67%,#fff 67% 83%,#a51931 83%)}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header>
+    <div class="brand"><img src="icon.png" alt="Cord"> Cord</div>
+    <nav>
+      <a href="#features" data-th="ทำอะไรได้">Features</a>
+      <a href="#start" data-th="เริ่มใช้">Get started</a>
+      <a href="#price" data-th="ราคา">Price</a>
+      <a href="https://github.com/ninjait07/cord">GitHub</a>
+      <a href="https://www.facebook.com/nondev07/" target="_blank" rel="noopener">Facebook</a>
+      <a class="lang" id="lang" href="?lang=th" lang="th">ไทย</a>
+    </nav>
+  </header>
+
+  <div class="hero">
+    <img class="logo" src="icon.png" alt="Cord app icon">
+    <h1 data-th="เพิ่มจอให้ Mac<br>ด้วยแท็บเล็ตที่มีอยู่แล้ว">More screen for your Mac.</h1>
+    <p class="tag" data-th="Cord เปลี่ยนแท็บเล็ต Android ที่คุณมีอยู่แล้วให้เป็นจอเสริมของ Mac ผ่านสาย USB-C เส้นเดียวกับที่ใช้ชาร์จ ไม่ใช้ Wi-Fi ไม่ต้องสมัครบัญชี">Cord turns the Android tablet you already own into an extra display for your Mac, over the USB-C cable that charges it. No Wi-Fi, no account.</p>
+    <div class="cta">
+      <a class="btn primary" href="https://github.com/ninjait07/cord/releases/latest" data-th="↓ ดาวน์โหลดสำหรับ Mac">↓ Download for Mac</a>
+      <a class="btn play" href="https://play.google.com/store/apps/details?id=com.nonbannawat.cord" target="_blank" rel="noopener"
+         data-th="แอปฝั่งแท็บเล็ตบน Google Play" data-soon="Tablet app: coming soon to Google Play" data-soon-th="แอปฝั่งแท็บเล็ต: เร็วๆ นี้บน Google Play">Tablet app on Google Play</a>
+    </div>
+    <div class="meta" data-th="แอปฝั่ง Mac ฟรี · แอปฝั่งแท็บเล็ตใช้ฟรี 7 วัน แล้วจ่ายครั้งเดียว ฿99 · macOS 14 ขึ้นไป (Apple Silicon) · Android 8 ขึ้นไป">Mac app free · Tablet app free for 7 days, then ฿99 once · macOS 14+ on Apple Silicon · Android 8+</div>
+  </div>
+
+  <figure class="scene"><img src="img/scene.svg" alt="A Mac display and a tablet joined by a USB-C cable, each showing windows"></figure>
+
+  <section id="features">
+    <div class="eyebrow" data-th="ทำอะไรได้">What it does</div>
+    <h2 data-th="ให้แท็บเล็ตที่วางอยู่เฉยๆ ได้ทำงาน">Put the tablet on your desk to work</h2>
+    <div class="grid">
+      <div class="card"><div class="ic"><svg viewBox="0 0 24 24"><path d="M9 3v5M15 3v5M7 8h10v4a5 5 0 0 1-10 0zM12 17v4"/></svg></div>
+        <h3 data-th="สายเดียวจบ">One cable</h3>
+        <p data-th="ภาพและการแตะวิ่งผ่านสาย USB-C ไม่ผ่าน Wi-Fi ใช้ได้แม้ไม่มีเน็ต และแท็บเล็ตได้ชาร์จไปด้วยระหว่างใช้">Picture and touch travel over the USB-C cable, not Wi-Fi. It works with no network at all, and the tablet charges while you work.</p></div>
+      <div class="card"><div class="ic"><svg viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="12" rx="2"/><path d="M8 20h8M12 16v4"/></svg></div>
+        <h3 data-th="เป็นจอจริงของ macOS">A real display</h3>
+        <p data-th="macOS มองแท็บเล็ตเป็นจอนอกอีกจอ ลากหน้าต่างไปวางได้ จัดตำแหน่งจอได้ เลือกความละเอียดได้">macOS sees the tablet as one more display. Drag windows onto it, place it anywhere in Arrange Displays, choose its resolution.</p></div>
+      <div class="card"><div class="ic"><svg viewBox="0 0 24 24"><path d="M12 3l2.2 5.8L20 11l-5.8 2.2L12 19l-2.2-5.8L4 11l5.800-2.2z"/></svg></div>
+        <h3 data-th="คมเต็มความละเอียด">Sharp</h3>
+        <p data-th="ส่งภาพเท่าความละเอียดจริงของแท็บเล็ต ตัวหนังสือคมแบบจอ Retina และลื่นได้ถึง 120 fps ถ้าจอแท็บเล็ตรองรับ">Sent at the tablet's own resolution with Retina-style scaling, at up to 120 fps on tablets that can show it.</p></div>
+      <div class="card"><div class="ic"><svg viewBox="0 0 24 24"><path d="M9 11V5.500a1.500 1.500 0 0 1 3 0V11M12 10.500V9a1.500 1.500 0 0 1 3 0v2M15 11a1.500 1.500 0 0 1 3 0v3a6 6 0 0 1-6 6h-.500a5 5 0 0 1-4-2l-3-4.200a1.500 1.500 0 0 1 2.400-1.800L9 14"/></svg></div>
+        <h3 data-th="แตะแบบแท็บเล็ต">Touch that feels right</h3>
+        <p data-th="แตะเพื่อคลิก ลากเพื่อเลื่อน กดค้างแล้วลากเพื่อย้ายของ แตะสองนิ้วเพื่อคลิกขวา ถ้าชอบแบบเมาส์ก็สลับได้ในปุ่มเดียว">Tap to click, drag to scroll, hold then drag to move things, two fingers to right-click. Prefer a mouse feel? One switch.</p></div>
+      <div class="card"><div class="ic"><svg viewBox="0 0 24 24"><rect x="4" y="9" width="11" height="11" rx="2"/><path d="M12 4h5a3 3 0 0 1 3 3v5M17.500 9.500L20 12l2.500-2.500"/></svg></div>
+        <h3 data-th="หมุนได้ทุกแนว">Any way up</h3>
+        <p data-th="แนวนอน แนวตั้ง กลับหัว หรือหมุนตามแท็บเล็ตเองเมื่อคุณพลิกเครื่อง เลือกได้จากฝั่ง Mac">Landscape, portrait, upside down, or follow the tablet as you turn it. You choose on the Mac.</p></div>
+      <div class="card"><div class="ic"><svg viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="13" rx="2"/><path d="M7 13.500h10"/><path d="M9 21h6"/></svg></div>
+        <h3 data-th="Dock ไม่ย้ายหนี">The Dock stays home</h3>
+        <p data-th="ปกติถ้าวางจอเสริมไว้ใต้จอหลัก macOS จะย้าย Dock ลงไปที่จอนั้น Cord ทำให้ Dock อยู่ที่จอหลักเหมือนเดิม">Put a display below your Mac's and macOS moves the Dock onto it. With Cord the Dock stays where it was.</p></div>
+      <div class="card"><div class="ic"><svg viewBox="0 0 24 24"><rect x="5" y="11" width="14" height="9" rx="2"/><path d="M8 11V8a4 4 0 0 1 8 0v3"/></svg></div>
+        <h3 data-th="ไม่ต้องเปิดโหมดนักพัฒนา">No developer mode</h3>
+        <p data-th="ไม่ต้องเปิด USB debugging เสียบสายแล้วกดอนุญาตบนแท็บเล็ตครั้งเดียว ใช้ได้เลย">USB debugging can stay off. Plug in, tap Allow on the tablet once, and that's it.</p></div>
+      <div class="card"><div class="ic"><svg viewBox="0 0 24 24"><path d="M12 3v12M7 10l5 5 5-5M5 20h14"/></svg></div>
+        <h3 data-th="เล็กมาก">Tiny</h3>
+        <p data-th="แอปฝั่ง Mac โหลดแค่ราว 1 MB อยู่เงียบๆ บนแถบเมนู แอปฝั่งแท็บเล็ตเล็กกว่า 1 MB">The Mac app is a 1 MB download that sits in the menu bar. The tablet app is under 1 MB.</p></div>
+      <div class="card"><div class="ic"><svg viewBox="0 0 24 24"><path d="M5 7h9M18 7h1M5 12h2M11 12h8M5 17h7M16 17h3"/><circle cx="16" cy="7" r="2"/><circle cx="9" cy="12" r="2"/><circle cx="14" cy="17" r="2"/></svg></div>
+        <h3 data-th="ปรับภาพได้ตามใจ">Quality is your call</h3>
+        <p data-th="คุณภาพภาพ 3 ระดับ และ 30, 60 หรือ 120 fps เปลี่ยนได้ระหว่างใช้งาน ไม่ต้องต่อใหม่">Three levels of picture quality, and 30, 60 or 120 fps. Change them while it runs.</p></div>
+    </div>
+  </section>
+
+  <section id="look">
+    <div class="split">
+      <figure class="shot"><img src="img/panel.png" alt="The Cord panel on the Mac: resolution, orientation, quality, frame rate, touch style"></figure>
+      <div>
+        <div class="eyebrow" data-th="บน Mac">On the Mac</div>
+        <h2 data-th="ทุกอย่างอยู่ในหน้าต่างเดียว">One small panel</h2>
+        <p class="lead" data-th="Cord อยู่บนแถบเมนู ทุกอย่างที่ปรับได้อยู่ในหน้าต่างเดียว ไม่มีหน้าตั้งค่าซ่อนอยู่ที่อื่น">Cord lives in the menu bar, and everything it can do is on one panel. There is no settings window hiding somewhere else.</p>
+        <div class="box">
+          <h3 data-th="การแตะบนแท็บเล็ต">Touch on the tablet</h3>
+          <table class="gestures">
+            <tr><td data-th="แตะ">Tap</td><td data-th="คลิก">Click</td></tr>
+            <tr><td data-th="ลาก">Drag</td><td data-th="เลื่อนหน้า ปล่อยนิ้วแล้วไหลต่อเหมือนแท็บเล็ต">Scroll, with a glide when you let go</td></tr>
+            <tr><td data-th="กดค้าง แล้วลาก">Hold, then drag</td><td data-th="ย้ายหน้าต่าง ลากไฟล์ เลือกข้อความ">Move a window, drag a file, select text</td></tr>
+            <tr><td data-th="กดค้าง แล้วปล่อย">Hold and let go</td><td data-th="คลิกขวา">Right-click</td></tr>
+            <tr><td data-th="แตะสองนิ้ว">Two-finger tap</td><td data-th="คลิกขวา">Right-click</td></tr>
+          </table>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="start">
+    <div class="eyebrow" data-th="เริ่มใช้">Get started</div>
+    <h2 data-th="ต่อครั้งแรกไม่เกินสองนาที">Two minutes to a second screen</h2>
+    <div class="split top">
+      <ol class="steps">
+        <li data-th="โหลด <b>Cord สำหรับ Mac</b> จากปุ่มด้านบน เปิดไฟล์ แล้วลาก Cord ไปไว้ใน Applications">Download <b>Cord for Mac</b> above, open it, and drag Cord into your Applications folder.</li>
+        <li data-th="เปิด Cord แล้วอนุญาต <b>Screen Recording</b> กับ <b>Accessibility</b> เมื่อ macOS ถาม">Open Cord and allow <b>Screen Recording</b> and <b>Accessibility</b> when macOS asks.</li>
+        <li data-th="ติดตั้ง <b>Cord</b> บนแท็บเล็ตจาก Google Play">Install <b>Cord</b> on the tablet from Google Play.</li>
+        <li data-th="ต่อสาย USB-C ระหว่างสองเครื่อง แล้วกด <b>อนุญาต</b> บนแท็บเล็ต แท็บเล็ตจะกลายเป็นจอทันที">Connect the two with a USB-C cable and tap <b>Allow</b> on the tablet. It becomes a display.</li>
+      </ol>
+      <div class="box">
+        <h3 data-th="ต้องมีอะไรบ้าง">What you need</h3>
+        <ul>
+          <li data-th="<b>Mac</b> ที่ใช้ชิป Apple Silicon และ macOS 14 ขึ้นไป"><b>A Mac</b> with Apple Silicon and macOS 14 or later.</li>
+          <li data-th="<b>แท็บเล็ต Android</b> เวอร์ชัน 8 ขึ้นไป (มือถือก็ใช้ได้)"><b>An Android tablet</b> on Android 8 or later. Phones work too.</li>
+          <li data-th="<b>สาย USB-C</b> ที่ส่งข้อมูลได้ สายชาร์จอย่างเดียวบางเส้นใช้ไม่ได้"><b>A USB-C cable</b> that carries data. Some charge-only cables do not.</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <section id="price">
+    <div class="eyebrow" data-th="ราคา">Price</div>
+    <h2 data-th="ลองใช้ฟรีหนึ่งสัปดาห์">Try it for a week</h2>
+    <div class="prices">
+      <div class="price">
+        <div class="what" data-th="Cord สำหรับ Mac">Cord for Mac</div>
+        <div class="amount" data-th="ฟรี">Free</div>
+        <p data-th="แอปฝั่ง Mac ฟรี และจะฟรีตลอดไป">The Mac app is free, and stays free.</p>
+      </div>
+      <div class="price">
+        <div class="what" data-th="Cord สำหรับ Android">Cord for Android</div>
+        <div class="amount">฿99<small data-th="จ่ายครั้งเดียว">once</small></div>
+        <p data-th="ใช้ฟรี 7 วันแรกแบบครบทุกอย่าง หลังจากนั้นจ่ายครั้งเดียว ฿99 ผ่าน Google Play แล้วใช้ได้ตลอด ไม่มีรายเดือน (ต่างประเทศ Google Play จะแสดงราคาเป็นสกุลเงินของประเทศนั้น)">Free for the first 7 days with everything working. After that, one ฿99 payment on Google Play keeps it for good. No subscription. Outside Thailand, Google Play shows the price in your currency.</p>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <div class="split">
+      <div>
+        <div class="eyebrow" data-th="เป็นส่วนตัวตั้งแต่ออกแบบ">Private by design</div>
+        <h2 data-th="ภาพจอคุณอยู่แค่ในสาย">Your screen stays on the cable.</h2>
+        <p style="color:var(--muted)" data-th="ภาพหน้าจอเดินทางจาก Mac ไปแท็บเล็ตผ่านสาย USB เท่านั้น ไม่ไปที่อื่น Cord ไม่มีบัญชีผู้ใช้ ไม่มีการเก็บสถิติ ไม่มีโฆษณา">The picture travels from the Mac to the tablet over USB and nowhere else. Cord has no accounts, no analytics and no ads.</p>
+      </div>
+      <div class="box">
+        <ul>
+          <li data-th="<b>Screen Recording</b> ใช้ส่งภาพของจอเสริมที่ Cord สร้างขึ้น ไม่มีการบันทึกเก็บไว้"><b>Screen Recording</b>: to send the picture of the extra display Cord creates. Nothing is saved.</li>
+          <li data-th="<b>Accessibility</b> ใช้เปลี่ยนการแตะเป็นการคลิกและการเลื่อน และใช้ทำให้ Dock อยู่ที่เดิม"><b>Accessibility</b>: to turn your touches into clicks and scrolling, and to keep the Dock in place.</li>
+          <li data-th="แอปฝั่ง Mac ไม่ต่ออินเทอร์เน็ตเลย">The Mac app never connects to the internet.</li>
+          <li data-th="แอปฝั่งแท็บเล็ตติดต่อ Google Play เรื่องการซื้อเท่านั้น">The tablet app talks to Google Play about the purchase, and nothing else.</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <div class="eyebrow" data-th="บอกกันตรงๆ">Good to know</div>
+    <h2 data-th="สิ่งที่ Cord ยังไม่ทำ">What Cord does not do</h2>
+    <div class="grid four">
+      <div class="card"><h3 data-th="ไม่มีโหมดไร้สาย">No wireless mode</h3><p data-th="ใช้สายอย่างเดียว ตั้งใจให้เป็นแบบนี้ เพราะสายคือสิ่งที่ทำให้ภาพไม่หน่วงและไม่หลุด">Cable only, on purpose: the cable is what keeps the picture quick and steady.</p></div>
+      <div class="card"><h3 data-th="ทีละหนึ่งแท็บเล็ต">One tablet at a time</h3><p data-th="Mac หนึ่งเครื่องใช้แท็บเล็ตเป็นจอได้ครั้งละเครื่องเดียว">One Mac drives one tablet. A second tablet waits its turn.</p></div>
+      <div class="card"><h3 data-th="ยังไม่รองรับ Mac รุ่น Intel">No Intel Macs yet</h3><p data-th="ตอนนี้รองรับเฉพาะ Mac ที่ใช้ชิป Apple Silicon">For now Cord runs on Apple Silicon Macs only.</p></div>
+      <div class="card"><h3 data-th="เสียงออกที่ Mac">Sound stays on the Mac</h3><p data-th="Cord ส่งเฉพาะภาพ เสียงยังออกจากลำโพงหรือหูฟังของ Mac ตามเดิม">Cord sends the picture only. Audio keeps playing from your Mac.</p></div>
+    </div>
+  </section>
+
+  <section>
+    <div class="support">
+      <div class="eyebrow" data-th="ทำโดย NonDev">Made by NonDev</div>
+      <h2 data-th="มีคำถาม เจอบั๊ก หรืออยากได้อะไรเพิ่ม">Questions, bugs, ideas?</h2>
+      <p style="color:var(--muted);max-width:520px;margin:0 auto 22px" data-th="ข่าวอัปเดตและโปรเจกต์ใหม่อยู่ที่เพจ NonDev ทักมาได้เลย มีคนตอบจริง">Updates and new projects are posted on the NonDev Facebook page. Message there and a person answers.</p>
+      <div class="cta" style="margin-top:0">
+        <a class="btn" href="https://www.facebook.com/nondev07/" target="_blank" rel="noopener"><span style="color:#4a9dff;font-weight:800">f</span> <span data-th="ติดตามเพจ NonDev">Follow NonDev</span></a>
+        <a class="btn" href="https://github.com/ninjait07/cord/issues" data-th="แจ้งปัญหาบน GitHub">Report a problem on GitHub</a>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    <div><span data-th="สร้างโดย NonDev">Crafted by NonDev</span> <span class="flag"></span></div>
+    <div><a href="https://github.com/ninjait07/cord">GitHub</a> · <a href="https://www.facebook.com/nondev07/" target="_blank" rel="noopener">Facebook</a> · <a href="privacy.html" data-th="ความเป็นส่วนตัว">Privacy</a></div>
+  </footer>
+</div>
+<script>
+  // Set to true once the tablet app is live on Google Play; until then the button says so instead of leading nowhere.
+  const TABLET_APP_IS_ON_PLAY = false;
+
+  const chosen = new URLSearchParams(location.search).get('lang');
+  let saved = null;
+  try { saved = localStorage.getItem('lang'); } catch (error) {}
+  const thai = (chosen || saved) === 'th';
+  if (chosen) { try { localStorage.setItem('lang', chosen); } catch (error) {} }
+
+  const play = document.querySelector('.btn.play');
+  if (!TABLET_APP_IS_ON_PLAY) {
+    play.textContent = play.dataset.soon;
+    play.dataset.th = play.dataset.soonTh;
+    play.removeAttribute('href');
+    play.classList.add('soon');
+  }
+  if (thai) {
+    document.documentElement.lang = 'th';
+    document.title = 'Cord — เพิ่มจอให้ Mac ด้วยแท็บเล็ต Android';
+    for (const element of document.querySelectorAll('[data-th]')) element.innerHTML = element.dataset.th;
+    for (const link of document.querySelectorAll('a[href="privacy.html"]')) link.href = 'privacy.html?lang=th';
+  }
+  const toggle = document.getElementById('lang');
+  toggle.textContent = thai ? 'English' : 'ไทย';
+  toggle.lang = thai ? 'en' : 'th';
+  toggle.href = thai ? '?lang=en' : '?lang=th';
+</script>
+</body>
+</html>
