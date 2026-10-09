@@ -17,7 +17,7 @@ This policy covers both halves of Cord: the Mac app, and the Android app "Cord: 
 
 The Mac app never connects to the internet.
 
-**The Android app** keeps two things in its own storage on the tablet: the date your free trial began, and whether you have unlocked the app. Android may include that storage in your device's own backup to your Google account. The app holds Android's network permission for one reason: a developer-only connection mode that reaches the Mac through the cable. The app sends nothing to the internet itself.
+**The Android app** keeps two things in its own storage on the tablet: how much of your free trial you have used, and whether you have unlocked the app. Android may include that storage in your device's own backup to your Google account. The app holds Android's network permission for one reason: a developer-only connection mode that reaches the Mac through the cable. The app sends nothing to the internet itself.
 
 **Purchases** are handled entirely by Google Play. Cord asks Google Play whether your account owns the unlock, and nothing more. Cord never sees your name, email address, or payment details. Google's own privacy policy applies to the purchase.
 
@@ -40,7 +40,7 @@ The Mac app never connects to the internet.
 
 แอปฝั่ง Mac ไม่ต่ออินเทอร์เน็ตเลย
 
-**แอปฝั่ง Android** เก็บข้อมูลสองอย่างไว้ในพื้นที่ของแอปบนแท็บเล็ต คือวันที่เริ่มทดลองใช้ฟรี และสถานะว่าปลดล็อกแล้วหรือยัง Android อาจรวมพื้นที่นี้ไว้ในการสำรองข้อมูลของเครื่องไปยังบัญชี Google ของคุณเอง แอปมีสิทธิ์ใช้เครือข่ายของ Android ด้วยเหตุผลเดียว คือโหมดเชื่อมต่อสำหรับนักพัฒนาที่ติดต่อ Mac ผ่านสาย ตัวแอปเองไม่ส่งอะไรออกอินเทอร์เน็ต
+**แอปฝั่ง Android** เก็บข้อมูลสองอย่างไว้ในพื้นที่ของแอปบนแท็บเล็ต คือเวลาทดลองใช้ฟรีที่ใช้ไปแล้ว และสถานะว่าปลดล็อกแล้วหรือยัง Android อาจรวมพื้นที่นี้ไว้ในการสำรองข้อมูลของเครื่องไปยังบัญชี Google ของคุณเอง แอปมีสิทธิ์ใช้เครือข่ายของ Android ด้วยเหตุผลเดียว คือโหมดเชื่อมต่อสำหรับนักพัฒนาที่ติดต่อ Mac ผ่านสาย ตัวแอปเองไม่ส่งอะไรออกอินเทอร์เน็ต
 
 **การซื้อ** จัดการโดย Google Play ทั้งหมด Cord ถาม Google Play เพียงว่าบัญชีของคุณเป็นเจ้าของการปลดล็อกหรือไม่ เท่านั้น Cord ไม่เห็นชื่อ อีเมล หรือข้อมูลการชำระเงินของคุณ การซื้ออยู่ภายใต้นโยบายความเป็นส่วนตัวของ Google
 
